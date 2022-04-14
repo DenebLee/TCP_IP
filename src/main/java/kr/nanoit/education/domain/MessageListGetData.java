@@ -1,7 +1,6 @@
 package kr.nanoit.education.domain;
 
 
-import kr.nanoit.education.SMS;
 import kr.nanoit.education.util.Encryption;
 
 import java.util.HashMap;

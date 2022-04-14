@@ -1,6 +1,6 @@
-package kr.nanoit.education;
+package kr.nanoit.education.test;
 
-public class Test {
+public class TestGetProperties {
 
     class ConfigLoader {
 

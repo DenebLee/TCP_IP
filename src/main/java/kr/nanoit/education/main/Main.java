@@ -1,7 +1,7 @@
 package kr.nanoit.education.main;
 
-import kr.nanoit.education.HttpConnection;
-import kr.nanoit.education.XmlParser;
+import kr.nanoit.education.server.HttpConnection;
+import kr.nanoit.education.config.XmlParser;
 import kr.nanoit.education.domain.*;
 import kr.nanoit.education.persist.DBSearching;
 import kr.nanoit.education.persist.DataBaseInputData;
@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Main {

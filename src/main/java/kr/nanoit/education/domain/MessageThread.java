@@ -1,7 +1,5 @@
 package kr.nanoit.education.domain;
 
-import kr.nanoit.education.SMS;
-
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 

@@ -1,4 +1,4 @@
-package kr.nanoit.education;
+package kr.nanoit.education.client;
 
 import javax.swing.*;
 import java.awt.*;

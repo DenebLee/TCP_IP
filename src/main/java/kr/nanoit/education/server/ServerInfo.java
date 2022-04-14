@@ -1,4 +1,4 @@
-package kr.nanoit.education;
+package kr.nanoit.education.server;
 
 public class ServerInfo {
     private String IP;

@@ -1,4 +1,4 @@
-package kr.nanoit.education;
+package kr.nanoit.education.config;
 
 import org.w3c.dom.Document; //HTML 문서 또는 XML 문서 전체를 나타냄
 import org.w3c.dom.Element; // HTML 문서 또는 XML 문서내의 요소

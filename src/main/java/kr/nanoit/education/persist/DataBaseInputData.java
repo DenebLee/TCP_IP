@@ -1,6 +1,6 @@
 package kr.nanoit.education.persist;
 
-import kr.nanoit.education.SMS;
+import kr.nanoit.education.domain.SMS;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;

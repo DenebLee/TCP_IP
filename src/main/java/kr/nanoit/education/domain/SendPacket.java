@@ -1,4 +1,4 @@
-package kr.nanoit.education;
+package kr.nanoit.education.domain;
 
 
 import java.nio.charset.StandardCharsets;

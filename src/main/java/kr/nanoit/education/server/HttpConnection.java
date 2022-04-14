@@ -1,4 +1,4 @@
-package kr.nanoit.education.util;
+package kr.nanoit.education.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -69,6 +69,7 @@ public class HttpConnection {
             String responseCode = String.valueOf(conn.getResponseCode());
             System.out.println("[http 응답 코드] : "+responseCode);
             System.out.println("[http 응답 데이터] : "+returnData);
+
 
 
 

@@ -1,4 +1,4 @@
-package kr.nanoit.education;
+package kr.nanoit.education.server;
 
 import java.io.*;
 import java.net.ServerSocket;
