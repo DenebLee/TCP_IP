@@ -1,5 +1,6 @@
 package kr.nanoit.education.main;
 
+import kr.nanoit.education.config.PropReader;
 import kr.nanoit.education.server.HttpConnection;
 import kr.nanoit.education.config.XmlParser;
 import kr.nanoit.education.domain.*;
@@ -21,19 +22,18 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class Main {
 
-    public static  void main(String[] args) throws UnsupportedEncodingException {
-//
-//        String resource = "test.properties";
-//        Properties properties = new Properties();
-        // 초기화
-//        String url = "http://ntmdist.nanoit.kr";
-//        String id = "ascagent01";
-//        String pw = "yApdI4xWI2MKGM3";
+    public static void main(String[] args) throws UnsupportedEncodingException {
 
-        String url = "http://localhost:9080";
-        String id = "test02";
-        String pw = "Y4dV4Jl9VdF7Ooum";
-        String enckey = "0iiyV0XbWaECjyotN4iWe";
+        HashMap<String, String> map ;
+        PropReader propreader = new PropReader();
+        map  = propreader.test();
+
+
+        String id = map.get("id");
+        String enckey = map.get("enckey");
+        String pw = map.get("password");
+        String url = map.get("url");
+
         String encryptpw = "";
         String returnData = "";
         String version = "test";
@@ -142,4 +142,7 @@ public class Main {
 //
 //    }
         // socket 연결완료
-    }}
+    }
+
+
+}

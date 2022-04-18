@@ -42,6 +42,7 @@ public class TCPClient extends JFrame {
         
         
         String serverIP = "192.168.0.48";
+        // client 돌리는 pc ip
 
         try {
             Socket s = new Socket(serverIP,SERVER_PORT);
