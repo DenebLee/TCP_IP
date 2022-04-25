@@ -74,7 +74,7 @@ public class Main {
         }
 
         // 해쉬맵에서 키값을 통해 value값 가져오기 -> socket 통신시 ip와 port 값으로 사용
-        // Ip값 Port 값 추출해서 socket에 넘기기
+        // Ip값 Port 값 추출해   서 socket에 넘기기
         IP = (String) parsedResult.get("ip");
         System.out.println("");
         System.out.println("[ 추출된 IP ] = "+ IP);
