@@ -41,6 +41,7 @@ public class XmlParser {
         this.xmlString = xmlString;
     }
 
+
     // Map은 키와 값으로 구성된 Entry객체를 저장하는 구조를 가지고 있는 자료구조, 키와 값은 모두 객체
     // 값은 중복 저장될 수 있지만 키는 중복저장 x
     // Hashmap은 이름 그래도 해싱을 사용하기에 많은 양의 데이터를 검색하는데 있어 뛰어난 성능가짐
@@ -59,7 +60,7 @@ public class XmlParser {
 
 
         serverInfo = document.getDocumentElement(); // xml을 메모리에 펼쳐놓고 루트를 elemnt에 저장
-        System.out.println(serverInfo.getNodeName()); // < ServerInfo가 찍힘
+        System.out.println(serverInfo.getNodeName()); // <ServerInfo가 찍힘
         severInfoChildNodes = (Node) serverInfo.getChildNodes(); // ServerInfo의 자식 요소들을 담음 (IP, PORT)
         List = severInfoChildNodes.getChildNodes();
         // 파싱할 태그의 리스트를 찾아온다

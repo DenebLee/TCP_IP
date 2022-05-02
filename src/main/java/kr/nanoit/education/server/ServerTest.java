@@ -40,6 +40,7 @@ class ServerThread extends Thread {
 
     public ServerThread(Socket s) {
         this.s = s;
+
         try {
             br = new BufferedReader(new InputStreamReader(s.getInputStream()));    //Socket으로 Read용 Stream
             pw = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));    //Socket으로 Write용 Stream
@@ -50,7 +51,6 @@ class ServerThread extends Thread {
 
     @Override
     public void run() {
-
         while (true) {
             String received;
             try {
@@ -62,9 +62,8 @@ class ServerThread extends Thread {
                     if (s != null) s.close();
                     return;
                 }
-
                 pw.println("Server Got Your Message : " + received);    //2. 보냄
-                pw.flush();
+                pw.flush(); // flush()는 현재 버퍼에 저장되어 있는 내용을 클라이언트로 전송하고 버퍼를 비운다.
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

@@ -1,5 +1,7 @@
 package kr.nanoit.education.main;
 
+import kr.nanoit.education.config.GetPropertyValue;
+import kr.nanoit.education.domain.LoginListener;
 import kr.nanoit.education.config.PropReader;
 import kr.nanoit.education.server.HttpConnection;
 import kr.nanoit.education.config.XmlParser;
@@ -18,22 +20,22 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Main {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
-        HashMap<String, String> map ;
-        PropReader propreader = new PropReader();
-        map  = propreader.test();
+        GetPropertyValue gpv = new GetPropertyValue();
+        gpv.getproperty();
+        System.out.println(id);
 
 
-        String id = map.get("id");
-        String enckey = map.get("enckey");
-        String pw = map.get("password");
-        String url = map.get("url");
-
+        String url = "http://localhost:9080";
+//        String id = "test02";
+        String pw = "Y4dV4Jl9VdF7Ooum";
+        String enckey = "0iiyV0XbWaECjyotN4iWe";
         String encryptpw = "";
         String returnData = "";
         String version = "test";
@@ -88,7 +90,7 @@ public class Main {
         DBSearching dbSearching = new DBSearching(linkedBlockingQueue, dataBaseInputData);
         dbSearching.Searching();
         // Data Select ===================================================================================================================
-
+        // DataBAseInputData에서 input Data를 넣으면된다
 
         // Message 암호화 및 패킷 생성 ======================================================================================================
         /*

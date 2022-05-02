@@ -12,6 +12,7 @@ public class HttpConnection {
     private String  UrlData;
 
     public HttpConnection(String url, String data) {
+        
 
         this.UrlData = url;
         this.ParamData = data;

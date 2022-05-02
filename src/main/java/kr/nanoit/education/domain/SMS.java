@@ -9,7 +9,7 @@ public class SMS {
     private String receive_number;          //수신자 전화번호(숫자만)
     private String callback_number;         //발신자 전화번호(숫자만)
     private String msg;                     //메세지 내용
-    private String data_count;              //
+    private String data_count;              // 횟수
     private String attachment_data_type;    //
     private String attachment_data_size;    //
     private String attachment_data;         //
@@ -73,8 +73,6 @@ public class SMS {
     public String getBill_id() {
         return bill_id;
     }
-
-
     public void setMessage_type(String message_type) {
         this.message_type = message_type;
     }
