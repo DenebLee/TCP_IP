@@ -4,10 +4,7 @@ package kr.nanoit.education.config;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 import org.junit.After;
 
@@ -70,7 +67,8 @@ class PropertiesReaderTest {
 
         // given file
         File expectedFile = create(tempDir, "test.properties", "id=whwjdgk\r\nencryptKey=");
-
+        String id = expected.getProperty("id");
+        System.out.println("아이디값 가져오기 : "+id);
         // when, then
         assertThatThrownBy(() -> PropertiesReader.read(expectedFile.getPath()))
                 .isInstanceOf(IOException.class);
@@ -84,12 +82,32 @@ class PropertiesReaderTest {
         expected.setProperty("test.test", "testproperties");
         expected.setProperty("test.test.2", "test2");
 
+
         // given file
         File expectedFile = create(tempDir, "test.properties", "sadflksdjvlkwjelkrjlkew");
 
         // when, then
         assertThatThrownBy(() -> PropertiesReader.read(expectedFile.getPath()))
                 .isInstanceOf(IOException.class);
+    }
+
+    @Test
+    @DisplayName("프토퍼티 값 가져오기 테스트")
+    void GetProperties() throws IOException {
+        // given expected
+        Properties expected = new Properties();
+        String propFileName = "test.properties";
+
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+        if (inputStream != null) {
+            expected.load(inputStream);
+        }else{
+            throw new FileNotFoundException("property file'" + propFileName + "'not found in the classpath");
+        }
+        String id = expected.getProperty("client.id");
+        System.out.println(id);
+
     }
 
     public File create(File directory, String name, String body) throws IOException {

@@ -1,6 +1,7 @@
 package kr.nanoit.education.main;
 
 import kr.nanoit.education.config.GetPropertyValue;
+import kr.nanoit.education.config.PropertiesReader;
 import kr.nanoit.education.domain.LoginListener;
 import kr.nanoit.education.config.PropReader;
 import kr.nanoit.education.server.HttpConnection;
@@ -10,9 +11,7 @@ import kr.nanoit.education.persist.DBSearching;
 import kr.nanoit.education.persist.DataBaseInputData;
 import kr.nanoit.education.util.Encryption;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -20,25 +19,39 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+
 import java.util.Properties;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Main {
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
+    public static void main(String[] args) throws IOException {
 
-        GetPropertyValue gpv = new GetPropertyValue();
-        gpv.getproperty();
-        System.out.println(id);
+        PropertiesReader propertiesReader = new PropertiesReader(properties);
+        Properties expected = new Properties();
+        String propFileName = "test.properties";
+
+        InputStream inputStream = Main.class.getClassLoader().getResourceAsStream(propFileName);
+
+        if (inputStream != null) {
+            expected.load(inputStream);
+        }else{
+            throw new FileNotFoundException("property file'" + propFileName + "'not found in the classpath");
+        }
 
 
-        String url = "http://localhost:9080";
-//        String id = "test02";
-        String pw = "Y4dV4Jl9VdF7Ooum";
-        String enckey = "0iiyV0XbWaECjyotN4iWe";
+        // 필수 값 가져오기===================================================================================================================
+
+        String id = expected.getProperty("client.id");
+        String url = expected.getProperty("client.url");
+        String pw = expected.getProperty("client.pw");
+        String enckey = expected.getProperty("client.enckey");
+        String version = expected.getProperty("client.version");
+
+        // 필수 값 가져오기===================================================================================================================
+
         String encryptpw = "";
         String returnData = "";
-        String version = "test";
         Map<String, String> parsedResult;
         String IP = "";
         String PORT = "";
@@ -60,6 +73,7 @@ public class Main {
         //URLEncoder.encode(encryptpw, StandardCharsets.UTF_8.toString());
         String data = "id=" + id + "&" + "password=" + URLEncoder.encode(encryptpw, StandardCharsets.UTF_8.toString());
 
+        // Connection 생성자 생성
         HttpConnection connection = new HttpConnection(url, data);
         returnData =  connection.Connection();
 
@@ -89,10 +103,12 @@ public class Main {
         linkedBlockingQueue = new LinkedBlockingQueue(1024);
         DBSearching dbSearching = new DBSearching(linkedBlockingQueue, dataBaseInputData);
         dbSearching.Searching();
+
         // Data Select ===================================================================================================================
         // DataBAseInputData에서 input Data를 넣으면된다
 
         // Message 암호화 및 패킷 생성 ======================================================================================================
+
         /*
         LinkedBlockingQueue
         - 선택적으로 Bound가 가능한 Linked list로 구현한 Queue
@@ -100,6 +116,7 @@ public class Main {
         - 용량을 초과하지 않는 한에서 node는 동적으로 삽입시마다 생성되며 초과 시 block.
         - Linked queue는 일반적으로 배열 기반 큐 보다 동시성 App에서 높은 throughput을 가짐.
          */
+
         messageLinkedBlockingQueue = new LinkedBlockingQueue(1024);
         MessageThread messageThread = new MessageThread(linkedBlockingQueue, messageLinkedBlockingQueue, id, encryptpw, enckey);
         Thread thread0 = new Thread(messageThread);
